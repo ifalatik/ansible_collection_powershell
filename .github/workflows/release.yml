@@ -50,7 +50,7 @@
               tag_name: v${{ steps.cversion.outputs.version }}
               release_name: Release v${{ steps.cversion.outputs.version }}
               body: |
-                # Ansible Collection: ifalatik.docker
+                # Ansible Collection: ifalatik.powershell
     
                 Install with:
                 ansible-galaxy collection install -r requirements.yml -f
@@ -58,7 +58,7 @@
                 The requirements.yml needs to have the following format and content:
                 ---
                 collections:
-                    - https://github.com/ifalatik/ansible_collection_docker/releases/download/v${{ steps.cversion.outputs.version }}/ifalatik-docker-${{ steps.cversion.outputs.version }}.tar.gz
+                    - https://github.com/ifalatik/ansible_collection_powershell/releases/download/v${{ steps.cversion.outputs.version }}/ifalatik-powershell-${{ steps.cversion.outputs.version }}.tar.gz
               draft: false
               prerelease: false
     
@@ -69,9 +69,9 @@
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             with:
               upload_url: ${{ steps.create_release.outputs.upload_url }}
-              asset_path: ifalatik-docker-${{ steps.cversion.outputs.version }}.tar.gz
-              asset_name: ifalatik-docker-${{ steps.cversion.outputs.version }}.tar.gz
+              asset_path: ifalatik-powershell-${{ steps.cversion.outputs.version }}.tar.gz
+              asset_name: ifalatik-powershell-${{ steps.cversion.outputs.version }}.tar.gz
               asset_content_type: application/tar+gzip
     
           - name: Deploy Ansible collection to Galaxy
-            run: ansible-galaxy collection publish ifalatik-docker-${{ steps.cversion.outputs.version }}.tar.gz --api-key ${{ secrets.GALAXY_API_KEY }}
+            run: ansible-galaxy collection publish ifalatik-powershell-${{ steps.cversion.outputs.version }}.tar.gz --api-key ${{ secrets.GALAXY_API_KEY }}
