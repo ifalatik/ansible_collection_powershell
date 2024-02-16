@@ -1,0 +1,52 @@
+---
+
+- name: Install requirements
+  ansible.builtin.apk:
+    name: "ca-certificates, less, ncurses-terminfo-base, krb5-libs, libgcc, libintl, libssl1.1, libstdc++, tzdata, userspace-rcu, zlib, icu-libs"
+    state: present
+    no_cache: true
+  become: true
+
+- name: Install requirements
+  ansible.builtin.apk:
+    name: "lttng-ust"
+    state: present
+    repository: "https://dl-cdn.alpinelinux.org/alpine/edge/main"
+    no_cache: true
+  become: true
+
+- name: Download release archive
+  ansible.builtin.get_url:
+    url: "https://github.com/PowerShell/PowerShell/releases/download/v{{ powershell_version_alpine }}/powershell-{{ powershell_version_alpine }}-linux-musl-x64.tar.gz"
+    dest: "{{ ansible_env.TMP }}/powershell-{{ powershell_version_alpine }}-linux-musl-x64.tar.gz"
+  delegate_to: localhost
+
+- name: Create PowerShell directory
+  ansible.builtin.file:
+    path: "/opt/microsoft/powershell/7"
+    state: directory
+  become: true
+
+- name: Extract release archive
+  ansible.builtin.unarchive:
+    src: "{{ ansible_env.TMP }}/powershell-{{ powershell_version_alpine }}-linux-musl-x64.tar.gz"
+    dest: "/opt/microsoft/powershell/7"
+  become: true
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Make pwsh executable
+  ansible.builtin.file:
+    path: "/opt/microsoft/powershell/7/pwsh"
+    mode: "0755"
+  become: true
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Create symlink to /usr/bin/pwsh
+  ansible.builtin.file:
+    path: "/usr/bin/pwsh"
+    state: link
+    src: "/opt/microsoft/powershell/7/pwsh"
+  become: true
+  ignore_errors: "{{ ansible_check_mode }}"
+
+...

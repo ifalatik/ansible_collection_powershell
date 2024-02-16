@@ -1,0 +1,23 @@
+---
+
+# Alpine installation
+- name: Install PowerShell on alpine
+  import_tasks: alpine.yml
+  when: ansible_os_family == 'Alpine'
+
+# Debian installation
+- name: Install PowerShell on debian (not Ubuntu)
+  import_tasks: debian.yml
+  when: ansible_os_family == 'Debian' and ansible_distribution != 'Ubuntu'
+
+# RHEL installation
+- name: Install PowerShell on rhel
+  import_tasks: redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+# Ubuntu installation
+- name: Install PowerShell on ubuntu
+  import_tasks: ubuntu.yml
+  when: ansible_os_family == 'Debian' and ansible_distribution == 'Ubuntu'
+
+...
