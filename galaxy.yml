@@ -9,7 +9,7 @@ readme: README.md
 authors:
 - Ian Falatik
 
-description: your collection description
+description: "Installs PowerShell on Linux"
 license_file: LICENSE
 tags: []
 dependencies: {}
