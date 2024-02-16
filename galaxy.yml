@@ -4,7 +4,7 @@
 
 namespace: "ifalatik"
 name: "powershell"
-version: 1.0.0
+version: 0.0.1
 readme: README.md
 authors:
 - Ian Falatik
