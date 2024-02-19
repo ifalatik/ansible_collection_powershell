@@ -12,7 +12,8 @@ authors:
 description: "Installs PowerShell on Linux"
 license_file: LICENSE
 tags: []
-dependencies: {}
+dependencies:
+  community.general: ">=1.0.0"
 
 repository: https://github.com/ansible-collections/ifalatik.powershell
 documentation: https://github.com/ansible-collections/ifalatik.powershell
