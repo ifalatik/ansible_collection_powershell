@@ -1,5 +1,5 @@
 ---
 
-powershell_version_alpine: "7.4.1"
+install_powershell_version_alpine: "7.4.1"
 
 ...

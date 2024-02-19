@@ -7,11 +7,11 @@ name: "powershell"
 version: "0.0.3"
 readme: README.md
 authors:
-- Ian Falatik
+  - Ian Falatik
 
 description: "Installs PowerShell on Linux"
 license_file: LICENSE
-tags: []
+tags: ["linux", "powershell", "application"]
 dependencies:
   community.general: ">=1.0.0"
 
