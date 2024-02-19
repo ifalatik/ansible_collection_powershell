@@ -1,0 +1,46 @@
+---
+
+driver:
+  name: docker
+
+platforms:
+  - name: alpine
+    dockerfile: alpine/Dockerfile.j2
+    image: alpine:3.14
+    pre_build_image: false
+  - name: deb10
+    dockerfile: debian/Dockerfile.j2
+    image: debian:10
+    pre_build_image: false
+  - name: deb11
+    dockerfile: debian/Dockerfile.j2
+    image: debian:11
+    pre_build_image: false
+  - name: fedora
+    image: fedora:34
+    pre_build_image: true
+  - name: centos7
+    image: centos:centos7
+    pre_build_image: true
+  - name: centos8
+    dockerfile: centos8/Dockerfile.j2
+    image: centos:centos8
+    pre_build_image: false
+
+provisioner:
+  name: ansible
+  inventory:
+    host_vars:
+      deb10:
+        ansible_python_interpreter: /usr/bin/python3
+        ansible_become: false
+      deb11:
+        ansible_python_interpreter: /usr/bin/python3
+        ansible_become: false
+      alpine:
+        ansible_python_interpreter: /usr/bin/python3
+        ansible_become: false
+      centos8:
+        ansible_become: false
+      centos7:
+        ansible_become: false

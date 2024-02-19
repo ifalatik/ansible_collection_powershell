@@ -2,7 +2,7 @@
 
 - name: Install requirements
   community.general.apk:
-    name: "ca-certificates, less, ncurses-terminfo-base, krb5-libs, libgcc, libintl, libssl1.1, libstdc++, tzdata, userspace-rcu, zlib, icu-libs"
+    name: "ca-certificates, less, ncurses-terminfo-base, krb5-libs, libgcc, libintl, libssl1.1, libstdc++, tzdata, userspace-rcu, zlib, icu-libs, tar"
     state: present
     no_cache: true
   become: true
@@ -19,7 +19,7 @@
   ansible.builtin.get_url:
     url: "https://github.com/PowerShell/PowerShell/releases/download/v{{ install_powershell_version_alpine }}\
       /powershell-{{ install_powershell_version_alpine }}-linux-musl-x64.tar.gz"
-    dest: "{{ ansible_env.TMP }}/powershell-{{ install_powershell_version_alpine }}-linux-musl-x64.tar.gz"
+    dest: "/tmp/powershell-{{ install_powershell_version_alpine }}-linux-musl-x64.tar.gz"
     mode: '0644'
   become: true
   delegate_to: localhost
@@ -33,7 +33,7 @@
 
 - name: Extract release archive
   ansible.builtin.unarchive:
-    src: "{{ ansible_env.TMP }}/powershell-{{ install_powershell_version_alpine }}-linux-musl-x64.tar.gz"
+    src: "/tmp/powershell-{{ install_powershell_version_alpine }}-linux-musl-x64.tar.gz"
     dest: "/opt/microsoft/powershell/7"
   become: true
   ignore_errors: "{{ ansible_check_mode }}"

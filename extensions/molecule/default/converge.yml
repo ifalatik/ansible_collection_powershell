@@ -1,0 +1,11 @@
+---
+
+- name: Converge
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Install PowerShell 7
+      ansible.builtin.include_role:
+        name: ifalatik.powershell.install
+
+...

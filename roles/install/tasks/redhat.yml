@@ -1,10 +1,28 @@
 ---
 
-- name: Add Microsoft repository key
-  ansible.builtin.rpm_key:
-    key: "https://packages.microsoft.com/config/rhel/{{ ansible_distribution_major_version }}/packages-microsoft-prod.rpm"
+- name: Install Microsoft repository key (Version ID <= 7)
+  ansible.builtin.yum:
+    name: "https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm"
+    disable_gpg_check: true
     state: present
   become: true
+  when: ansible_distribution_major_version is version('7', '<=')
+
+- name: Install Microsoft repository key (Version ID == 8)
+  ansible.builtin.yum:
+    name: "https://packages.microsoft.com/config/rhel/8/packages-microsoft-prod.rpm"
+    disable_gpg_check: true
+    state: present
+  become: true
+  when: ansible_distribution_major_version is version('8')
+
+- name: Install Microsoft repository key (Version ID >= 9)
+  ansible.builtin.yum:
+    name: "https://packages.microsoft.com/config/rhel/9/packages-microsoft-prod.rpm"
+    disable_gpg_check: true
+    state: present
+  become: true
+  when: ansible_distribution_major_version is version('9', '>=')
 
 - name: Install powershell
   ansible.builtin.yum:
