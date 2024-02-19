@@ -1,4 +1,7 @@
 # CHANGELOG
+## 0.0.3
+- fix RHEL and alpine installs
+
 ## 0.0.2
 - Include Role README
 

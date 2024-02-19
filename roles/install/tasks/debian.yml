@@ -4,6 +4,7 @@
   ansible.builtin.get_url:
     url: "https://packages.microsoft.com/config/debian/{{ ansible_distribution_major_version }}/packages-microsoft-prod.deb"
     dest: "/tmp/packages-microsoft-prod.deb"
+    mode: "0644"
   changed_when: false
 
 - name: Install Microsoft repository GPG keys
@@ -16,7 +17,7 @@
   ansible.builtin.apt:
     name: "powershell"
     state: present
-    update_cache: yes
+    update_cache: true
   become: true
   ignore_errors: "{{ ansible_check_mode }}"
 
