@@ -29,6 +29,8 @@ platforms:
 
 provisioner:
   name: ansible
+  env:
+    ANSIBLE_VERBOSITY: 2
   inventory:
     host_vars:
       deb10:

@@ -1,0 +1,14 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install PowerShell 7 on Linux"
+    description: "Install PowerShell 7 on Linux"
+    options:
+      install_powershell_version_alpine:
+        type: str
+        required: false
+        default: "7.4.1"
+        description: "The version of PowerShell to install on Alpine Linux. May be one of the following: 7.4.1, 7.3.11, 7.2.18"
+
+...
