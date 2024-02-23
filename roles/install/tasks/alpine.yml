@@ -2,7 +2,7 @@
 
 # https://learn.microsoft.com/en-us/powershell/scripting/install/install-alpine
 - name: Assert a correct version is selected
-  assert:
+  ansible.builtin.assert:
     that:
       - install_powershell_version_alpine in ['7.4.1', '7.3.11', '7.2.18']
     fail_msg: "The version of PowerShell to install on Alpine Linux must be one of the following: 7.4.1, 7.3.11, 7.2.18"
