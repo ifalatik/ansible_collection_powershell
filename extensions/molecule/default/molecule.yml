@@ -19,13 +19,6 @@ platforms:
   - name: fedora
     image: fedora:34
     pre_build_image: true
-  - name: centos7
-    image: centos:centos7
-    pre_build_image: true
-  - name: centos8
-    dockerfile: centos8/Dockerfile.j2
-    image: centos:centos8
-    pre_build_image: false
 
 provisioner:
   name: ansible
@@ -41,8 +34,4 @@ provisioner:
         ansible_become: false
       alpine:
         ansible_python_interpreter: /usr/bin/python3
-        ansible_become: false
-      centos8:
-        ansible_become: false
-      centos7:
         ansible_become: false
