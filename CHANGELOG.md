@@ -1,4 +1,9 @@
 # CHANGELOG
+## 1.0.0
+- improve documentation
+- fix integration tests
+- remove official support for centos 7 and 8
+
 ## 0.0.4
 - fix RHEL and alpine installs
 - add basic testing
