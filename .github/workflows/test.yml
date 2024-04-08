@@ -16,6 +16,36 @@ jobs:
     uses: ./.github/workflows/ansible-lint.yml
   integration:
     uses: ansible-network/github_actions/.github/workflows/integration_simple.yml@main
+    with:
+      # defaults from https://github.com/ansible-network/github_actions/blob/main/.github/workflows/integration_simple.yml
+      # exclude `devel`
+      matrix_exclude: >-
+        [
+          {
+            "ansible-version": "stable-2.13",
+            "python-version": "3.11"
+          },
+          {
+            "ansible-version": "stable-2.16",
+            "python-version": "3.9"
+          },
+          {
+            "ansible-version": "milestone",
+            "python-version": "3.9"
+          },
+          {
+            "ansible-version": "devel",
+            "python-version": "3.9"
+          },
+          {
+            "ansible-version": "devel",
+            "python-version": "3.10"
+          },
+          {
+            "ansible-version": "devel",
+            "python-version": "3.11"
+          }
+        ]
   sanity:
     uses: ansible-network/github_actions/.github/workflows/sanity.yml@main
   unit-galaxy:
