@@ -1,7 +1,7 @@
 ---
 
 - name: Install Microsoft repository key (Version ID <= 7)
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: "https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm"
     disable_gpg_check: true
     state: present
@@ -9,7 +9,7 @@
   when: ansible_distribution_major_version is version('7', '<=')
 
 - name: Install Microsoft repository key (Version ID == 8)
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: "https://packages.microsoft.com/config/rhel/8/packages-microsoft-prod.rpm"
     disable_gpg_check: true
     state: present
@@ -17,7 +17,7 @@
   when: ansible_distribution_major_version is version('8')
 
 - name: Install Microsoft repository key (Version ID >= 9)
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: "https://packages.microsoft.com/config/rhel/9/packages-microsoft-prod.rpm"
     disable_gpg_check: true
     state: present
@@ -25,7 +25,7 @@
   when: ansible_distribution_major_version is version('9', '>=')
 
 - name: Install powershell
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: "powershell"
     state: present
     update_cache: true
